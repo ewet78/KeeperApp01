@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Keeper App</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=McLaren|Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        background: #eee;
+        background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      h1 {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        padding: 2%;
+        font-family: "McLaren", cursive;
+        font-weight: 200;
+        color: #f5ba13;
+      }
+      input {
+        border: 1px solid #f5ba13;
+        background-color: rgba(252, 252, 252, 0.2);
+        width: 250px;
+        border-radius: 3px;
+        font-family: "McLaren", cursive;
+        padding: 10px 15px;
+        margin: 0 auto 10px auto;
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        color: black;
+        font-weight: 300;
+      }
+
+      button {
+        appearance: none;
+        outline: 0;
+        background-color: #f5ba13;
+        font-family: "McLaren", cursive;
+        border: 0;
+        padding: 10px 15px;
+        color: black;
+        border-radius: 3px;
+        width: 250px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+      }
+
+      button#reset-password {
+        cursor: pointer;
+        color: white;
+        width: 280px;
+        padding: 10px 15px;
+        margin: 0 auto 10px auto;
+        font-size: 18px;
+      }
+
+
+    </style>
+    <script>
+      var status = '<%- JSON.stringify(status) %>';
+      console.log(status);
+      if (JSON.parse(status) == "Verified") {
+        if (confirm("Do you want to login?")) {
+          window.location.href = "http://localhost:3000/login";
+        } else {
+          window.location.href = "http://localhost:3000/";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form action="" method="post">
+        <h1><%= email %></h1>
+        <input type="password" name="password" placeholder="password" required />
+        <input type="password"  name="confirmPassword" placeholder="confirm password" required />
+        <button type="submit" id="reset-password">Reset password</button>
+    </form>
+  </body>
+</html>

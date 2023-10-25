@@ -1,17 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from "./components/Login.jsx";
+import Register from "./components/Registration.jsx";
+import MainPage from './components/MainPage.jsx';
+import App from "./components/App.jsx";
+import PasswordReset from './components/PasswordReset.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const isLoggedIn=window.localStorage.getItem("loggedIn");
+
+const container = document.getElementById('root');
+const root = createRoot(container);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  <BrowserRouter>
+    <ToastContainer />
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgotpassword" element={<PasswordReset />} />
+      <Route path="/app" element={isLoggedIn==="true"?<App />:<MainPage />} />
+    </Routes>
+  </BrowserRouter>
+  );
